@@ -50,10 +50,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="130dp"
             android:text="@string/finish"
+            android:gravity="center"
             android:textColor="@color/orange"
             android:textSize="22sp"
             android:textStyle="bold"
-            android:visibility="gone" />
+            android:visibility="gone"
+            tools:visibility="visible"/>
     </LinearLayout>
 
     <LinearLayout
@@ -81,6 +83,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/black2"
+            android:gravity="top"
             android:textColor="@color/white"
             app:layout_constraintTop_toBottomOf="@id/et_title" />
     </LinearLayout>

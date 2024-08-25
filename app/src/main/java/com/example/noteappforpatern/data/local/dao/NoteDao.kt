@@ -1,5 +1,6 @@
 package com.example.noteappforpatern.data.local.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -12,7 +13,10 @@ import com.example.noteappforpatern.data.local.entity.NoteEntity
 interface NoteDao {
 
     @Query("SELECT * FROM noteModel")
-    fun getAllNotes(): List<NoteEntity>
+    fun getAllNotes(): LiveData<List<NoteEntity>>
+
+    @Query("SELECT * FROM noteModel WHERE id = :id")
+    fun getNoteById(id: Long): LiveData<NoteEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertNote(noteModel: NoteEntity)

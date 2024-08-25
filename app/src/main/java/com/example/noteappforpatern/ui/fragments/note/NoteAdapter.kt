@@ -9,9 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.noteappforpatern.data.local.entity.NoteEntity
 import com.example.noteappforpatern.databinding.ItemNotesBinding
 
-class NoteAdapter : ListAdapter<NoteEntity, NoteAdapter.ViewHolder>(DiffCallback()) {
-
-    private var onNoteClickListener: OnClick? = null
+class NoteAdapter(private val onClick: OnClick, private val onLongClick: OnClick) : ListAdapter<NoteEntity, NoteAdapter.ViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -24,9 +22,6 @@ class NoteAdapter : ListAdapter<NoteEntity, NoteAdapter.ViewHolder>(DiffCallback
         holder.bind(item)
     }
 
-    fun setOnNoteClickListener(listener: OnClick) {
-        onNoteClickListener = listener
-    }
 
     inner class ViewHolder(private val binding: ItemNotesBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -40,7 +35,11 @@ class NoteAdapter : ListAdapter<NoteEntity, NoteAdapter.ViewHolder>(DiffCallback
                 tvTime.text = noteModel.time
                 itemView.setBackgroundColor(noteModel.color)
                 itemView.setOnClickListener {
-                    onNoteClickListener?.onItemClick(noteModel)
+                    onClick.onItemClick(noteModel)
+                }
+                itemView.setOnLongClickListener {
+                    onLongClick.onItemLongClick(noteModel)
+                    true
                 }
             }
         }
