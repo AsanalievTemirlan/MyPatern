@@ -3,6 +3,7 @@ package com.example.noteappforpatern.di
 import org.koin.dsl.module
 import androidx.room.Room
 import com.example.noteappforpatern.data.local.db.NoteDataBase
+import com.example.noteappforpatern.data.repository.NoteRepository
 
 // Создайте модуль Koin для Room
 val roomModule = module {
@@ -11,5 +12,7 @@ val roomModule = module {
             .fallbackToDestructiveMigration()
             .build()
     }
-    single { get<NoteDataBase>().userDao() }
+    single { get<NoteDataBase>().noteDao() }
+
+    single { NoteRepository(get()) }
 }

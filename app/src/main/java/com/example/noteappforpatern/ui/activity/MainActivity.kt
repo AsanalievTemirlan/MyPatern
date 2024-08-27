@@ -12,6 +12,7 @@ import com.example.noteappforpatern.R
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         }
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
+        
         navController = navHostFragment.navController
     }
 

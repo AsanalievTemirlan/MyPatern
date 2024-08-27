@@ -9,9 +9,20 @@
         android:id="@+id/noteFragment"
         android:name="com.example.noteappforpatern.ui.fragments.note.NoteFragment"
         android:label="fragment_note"
-        tools:layout="@layout/fragment_note" />
+        tools:layout="@layout/fragment_note" >
+        <action
+            android:id="@+id/action_noteFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.example.noteappforpatern.ui.fragments.detail.DetailFragment"
-        android:label="DetailFragment" />
+        android:label="DetailFragment" >
+        <action
+            android:id="@+id/action_detailFragment_to_noteFragment"
+            app:destination="@id/noteFragment" />
+        <argument
+            android:name="id"
+            app:argType="long" />
+    </fragment>
 </navigation>
